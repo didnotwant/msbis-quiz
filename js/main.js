@@ -475,6 +475,7 @@ const recipes = [
 ];
 
 let currentRecipe = recipes[0];
+let shouldRandomizeRequiredOnly = true;
 
 const checkRecipe = function (ingredients) {
   if (JSON.stringify(currentRecipe.ingredients) === JSON.stringify(ingredients)) {
@@ -486,6 +487,19 @@ const checkRecipe = function (ingredients) {
 
   createAddingForm();
   randomizeCocktail();
+};
+
+const initSettingsSection = function () {
+  const settingsEl = document.querySelector('.settings');
+  const inputEl = settingsEl.querySelector('.should-randomize-required-only');
+
+  shouldRandomizeRequiredOnly = inputEl.checked;
+
+  const onInputChange = function () {
+    shouldRandomizeRequiredOnly = inputEl.checked;
+  };
+
+  inputEl.addEventListener('change', onInputChange, false);
 };
 
 const createAddingForm = function () {
@@ -590,11 +604,20 @@ const createAddingForm = function () {
 };
 
 const randomizeCocktail = function () {
-  currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+  const recipesMaybeFiltered = recipes.filter(function (recipe) {
+    if (shouldRandomizeRequiredOnly) {
+      return recipe.required;
+    }
+
+    return true;
+  });
+
+  currentRecipe = recipesMaybeFiltered[Math.floor(Math.random() * recipesMaybeFiltered.length)];
 
   const cocktailNameEl = document.querySelector('.cocktail-name');
   cocktailNameEl.textContent = currentRecipe.name;
 };
 
+initSettingsSection();
 createAddingForm();
 randomizeCocktail();

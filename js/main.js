@@ -25,6 +25,7 @@ const ingredients = {
   orange: 'sok pomarańczowy',
   cranberry: 'sok żurawinowy',
   grapefruit: 'sok grejpfrutowy',
+  pineapple: 'sok ananasowy',
   campari: 'Campari',
   rye: 'żytnia whiskey',
   brandy: 'brandy/koniak',
@@ -38,6 +39,8 @@ const ingredients = {
   cacaoLight: 'likier kakaowy jasny',
   amaretto: 'Amaretto',
   irishCream: 'Irish Cream',
+  chambord: 'Chambord',
+  southernComfort: 'Southern Comfort',
   curacao: 'blue curacao',
   darkRom: 'ciemny rum',
   lillet: 'Lillet Blonde',
@@ -52,6 +55,8 @@ const ingredients = {
   limeCordial: 'lime cordial',
   cachaca: 'cachaca',
   cutHalfOfLime: 'pół pokrojonej limonki',
+  tomato: 'sok pomidorowy',
+  seasonings: 'przyprawy',
 };
 
 const speedRack = [
@@ -160,6 +165,7 @@ const units = {
   pc: 'x',
 };
 const values = {
+  twoPieces: '80',
   oneAndHalfPiece: '60',
   onePiece: '40',
   threeQuarters: '30',
@@ -527,6 +533,17 @@ const recipes = [
     required: true,
   },
   {
+    name: 'Between the Sheets',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.brandy],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+    ],
+    garnishPieces: [garnishes.crust.sugar, garnishes.lemon.zest],
+    required: true,
+  },
+  {
     name: 'White Lady',
     ingredients: [
       [values.onePiece, units.ml, ingredients.gin],
@@ -547,11 +564,32 @@ const recipes = [
     required: true,
   },
   {
+    name: 'Blue Margarita',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.curacao],
+      [values.half, units.ml, ingredients.lime],
+    ],
+    garnishPieces: [garnishes.lime.zest],
+    required: true,
+  },
+  {
     name: 'Daiquiri',
     ingredients: [
       [values.onePiece, units.ml, ingredients.lightRom],
       [values.threeQuarters, units.ml, ingredients.lime],
       [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.lime.zest],
+    required: true,
+  },
+  {
+    name: 'Air Mail',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.lightRom],
+      [values.threeQuarters, units.ml, ingredients.lime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.wine],
     ],
     garnishPieces: [garnishes.lime.zest],
     required: true,
@@ -610,7 +648,380 @@ const recipes = [
     ],
     required: true,
   },
+  {
+    name: 'G&T',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.one, units.topUp, ingredients.tonic],
+      [values.one, units.pc, garnishes.lemon.quarter],
+    ],
+    required: true,
+  },
+  {
+    name: 'Cuba Libre',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.lime],
+      [values.one, units.topUp, ingredients.cola],
+      [values.one, units.pc, garnishes.lime.quarter],
+    ],
+    required: true,
+  },
+  // TODO: Add Moscow Mule.
+  {
+    name: 'Tequila Sunrise',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.tequila],
+      [values.one, units.topUp, ingredients.orange],
+      [values.one, units.splash, ingredients.grenadine],
+    ],
+    garnishPieces: [garnishes.orange.piece],
+    required: true,
+  },
+  {
+    name: 'Sex on the Beach',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.peach],
+      [values.one, units.topUp, ingredients.orange],
+      [values.one, units.topUp, ingredients.cranberry],
+    ],
+    garnishPieces: [garnishes.orange.piece],
+    required: true,
+  },
+  {
+    name: 'Long Island Iced Tea',
+    ingredients: [
+      [values.half, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.cola],
+    ],
+    garnishPieces: [garnishes.lemon.quarter],
+    required: true,
+  },
+  {
+    name: 'Long Beach Iced T',
+    ingredients: [
+      [values.half, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.cranberry],
+    ],
+    garnishPieces: [garnishes.lemon.quarter],
+    required: true,
+  },
+  {
+    name: 'California Long Island Iced Tea',
+    ingredients: [
+      [values.half, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.orange],
+    ],
+    garnishPieces: [garnishes.lemon.quarter],
+    required: true,
+  },
+  {
+    name: 'Electric Long Island Iced Tea',
+    ingredients: [
+      [values.half, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.curacao],
+      [values.half, units.ml, ingredients.lemon],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.lemonade],
+    ],
+    garnishPieces: [garnishes.lemon.quarter],
+    required: true,
+  },
+  {
+    name: 'Polish Long Island Iced Tea',
+    ingredients: [
+      [values.half, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.lightRom],
+      [values.half, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.cider],
+    ],
+    garnishPieces: [garnishes.lemon.quarter],
+    required: true,
+  },
+  {
+    name: 'Bloody Mary',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.twoPieces, units.ml, ingredients.tomato],
+      [values.one, units.pc, ingredients.seasonings],
+    ],
+    garnishPieces: [garnishes.celery],
+    required: false,
+  },
+  {
+    name: 'Screwdriver',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.orange],
+    ],
+    required: true,
+  },
+  {
+    name: 'Capecodder',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.cranberry],
+    ],
+    required: true,
+  },
+  {
+    name: 'Greyhound',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.grapefruit],
+    ],
+    required: true,
+  },
+  {
+    name: 'Madras',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.orange],
+      [values.one, units.topUp, ingredients.cranberry],
+    ],
+    required: true,
+  },
+  {
+    name: 'Baybreeze',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.cranberry],
+      [values.one, units.topUp, ingredients.pineapple],
+    ],
+    required: true,
+  },
+  {
+    name: 'Seabreeze',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.topUp, ingredients.cranberry],
+      [values.one, units.topUp, ingredients.grapefruit],
+    ],
+    required: true,
+  },
+
+  {
+    name: 'Black Russian',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.kahlua],
+    ],
+    required: true,
+  },
+  {
+    name: 'White Russian',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.half, units.ml, ingredients.kahlua],
+      [values.one, units.splash, ingredients.cream],
+    ],
+    required: true,
+  },
+  {
+    name: 'God Father',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.scotch],
+      [values.half, units.ml, ingredients.amaretto],
+    ],
+    required: true,
+  },
+  {
+    name: 'Brandy Alexander',
+    ingredients: [
+      [values.half, units.ml, ingredients.brandy],
+      [values.half, units.ml, ingredients.cacaoDark],
+      [values.half, units.ml, ingredients.cream],
+    ],
+    garnishPieces: [garnishes.nutmeg],
+    required: true,
+  },
+  {
+    name: 'Grasshopper',
+    ingredients: [
+      [values.half, units.ml, ingredients.mint],
+      [values.half, units.ml, ingredients.cacaoLight],
+      [values.half, units.ml, ingredients.cream],
+    ],
+    garnishPieces: [garnishes.chocolate.sprinkle],
+    required: true,
+  },
+  {
+    name: 'Orgasm',
+    ingredients: [
+      [values.half, units.ml, ingredients.kahlua],
+      [values.half, units.ml, ingredients.irishCream],
+      [values.half, units.ml, ingredients.cream],
+    ],
+    garnishPieces: [garnishes.chocolate.sauce],
+    required: true,
+  },
+  {
+    name: 'Scotch & Soda',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.scotch],
+      [values.one, units.topUp, ingredients.soda],
+    ],
+    required: true,
+  },
 ];
+
+const recipeModifiers = [
+  ['Perfect', function (recipe) {
+    const anyVermouth = recipe.ingredients.find(
+      ingredient => ingredient[1] === units.ml && (
+        ingredient[2] === ingredients.sweet ||
+        ingredient[2] === ingredients.dry
+      )
+    );
+
+    if (anyVermouth) {
+      const amount = Number(anyVermouth[0]) / 2;
+      const vermouthType = anyVermouth[2];
+
+      anyVermouth[0] = String(amount);
+
+      recipe.ingredients.splice(recipe.ingredients.indexOf(anyVermouth) + 1, 0, [
+        String(amount), units.ml, (
+          vermouthType === ingredients.sweet ?
+            ingredients.dry :
+            ingredients.sweet
+        )
+      ]);
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+  ['Dry', function (recipe) {
+    const sweetVermouth = recipe.ingredients.find(
+      ingredient => ingredient[1] === units.ml &&
+        ingredient[2] === ingredients.sweet
+      );
+
+    if (sweetVermouth) {
+      sweetVermouth[2] = ingredients.dry;
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+  ['Wet', function (recipe) {
+    const anyVermouth = recipe.ingredients.find(
+      ingredient => ingredient[1] === units.ml && (
+        ingredient[2] === ingredients.sweet ||
+        ingredient[2] === ingredients.dry
+      )
+    );
+
+    if (anyVermouth) {
+      const amount = Number(anyVermouth[0]) * 2;
+
+      anyVermouth[0] = String(amount);
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+  ['Screaming', function (recipe) {
+    const anyCreamCoctail = recipe.ingredients.find(
+      ingredient => ingredient[0] === values.half &&
+        ingredient[1] === units.ml &&
+        ingredient[2] === ingredients.cream
+    );
+
+    if (anyCreamCoctail) {
+      recipe.ingredients.splice(1, 0, [
+        values.half, units.ml, ingredients.vodka
+      ]);
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+  ['Multiply', function (recipe) {
+    const anyCreamCoctail = recipe.ingredients.find(
+      ingredient => ingredient[0] === values.half &&
+        ingredient[1] === units.ml &&
+        ingredient[2] === ingredients.cream
+    );
+
+    if (anyCreamCoctail) {
+      recipe.ingredients.splice(1, 0, [
+        values.half, units.ml, ingredients.southernComfort
+      ]);
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+  ['Royal', function (recipe) {
+    const anyCreamCoctail = recipe.ingredients.find(
+      ingredient => ingredient[0] === values.half &&
+        ingredient[1] === units.ml &&
+        ingredient[2] === ingredients.cream
+    );
+
+    if (anyCreamCoctail) {
+      recipe.ingredients.splice(1, 0, [
+        values.half, units.ml, ingredients.chambord
+      ]);
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
+];
+
+const additionalRecipes = [];
+
+recipes.forEach(function (recipe) {
+  recipeModifiers.forEach(function (modifier) {
+    const name = modifier[0];
+    const fn = modifier[1];
+    const recipeCopy = JSON.parse(JSON.stringify(recipe));
+    const newRecipe = fn(recipeCopy);
+
+    if (newRecipe !== null && !recipeCopy.name.match(name)) {
+      newRecipe.name = name + ' ' + newRecipe.name;
+      additionalRecipes.push(newRecipe);
+    }
+  });
+});
+
+additionalRecipes.forEach(function (additionalRecipe) {
+  recipes.push(additionalRecipe);
+});
 
 const recipesRequiredOnExam = recipes.filter(function (recipe) {
   return recipe.required;

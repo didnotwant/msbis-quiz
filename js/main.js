@@ -46,9 +46,12 @@ const ingredients = {
   wine: 'wino musujące',
   eggWhite: 'białko',
   mintLeaf: 'liść mięty',
+  basilLeaf: 'liść bazylii',
   cider: 'cydr',
   oliveBrine: 'zalewa z oliwek',
   limeCordial: 'lime cordial',
+  cachaca: 'cachaca',
+  cutHalfOfLime: 'pół pokrojonej limonki',
 };
 
 const speedRack = [
@@ -103,6 +106,7 @@ const garnishes = {
   lemon: {
     zest: 'zest z cytryny',
     slice: 'plasterek cytryny',
+    quarter: 'ćwiartka cytryny',
   },
   orange: {
     zest: 'zest z pomarańczy',
@@ -116,11 +120,13 @@ const garnishes = {
     quarter: 'ćwiartka limonki',
   },
   mint: 'gałązka mięty',
+  basil: 'bazylia',
   crust: {
     salt: 'crusta z soli',
     sugar: 'crusta z cukru',
   },
   pipe: {
+    normal: 'rurka',
     short: 'krótka rurka',
   },
   celery: 'seler naciowy',
@@ -151,7 +157,7 @@ const units = {
   splash: 'splash',
   topUp: 'top up',
   wash: 'wash out/in out',
-  pc: 'sztuk',
+  pc: 'x',
 };
 const values = {
   oneAndHalfPiece: '60',
@@ -161,6 +167,7 @@ const values = {
   fifteen: '15',
   quarter: '10',
 
+  six: '6',
   five: '5',
   four: '4',
   three: '3',
@@ -470,6 +477,137 @@ const recipes = [
       [values.one, units.topUp, ingredients.soda],
     ],
     garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Ramos Gin Fizz',
+    ingredients: [
+      [values.oneAndHalfPiece, units.ml, ingredients.gin],
+      [values.fifteen, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.lime],
+      [values.threeQuarters, units.ml, ingredients.cream],
+      [values.one, units.pc, ingredients.eggWhite],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.four, units.dash, ingredients.angosturaOrange],
+      [values.one, units.topUp, ingredients.soda],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: false,
+  },
+  {
+    name: 'Whiskey Smash',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.jack],
+      [values.six, units.pc, ingredients.mintLeaf],
+      [values.two, units.pc, garnishes.lemon.quarter],
+      [values.half, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.mint],
+    required: false,
+  },
+  {
+    name: 'Gin Basil Smash',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.quarter, units.ml, ingredients.lemon],
+      [values.quarter, units.pc, ingredients.basilLeaf],
+      [values.half, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.basil],
+    required: false,
+  },
+  {
+    name: 'Side Car',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.brandy],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+    ],
+    garnishPieces: [garnishes.crust.sugar, garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'White Lady',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lemon],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Margarita',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.tequila],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.lime],
+    ],
+    garnishPieces: [garnishes.lime.zest],
+    required: true,
+  },
+  {
+    name: 'Daiquiri',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.lightRom],
+      [values.threeQuarters, units.ml, ingredients.lime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.lime.zest],
+    required: true,
+  },
+  {
+    name: 'Caipirinha',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.cachaca],
+      [values.one, units.pc, ingredients.cutHalfOfLime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.pipe.normal],
+    required: false,
+  },
+  {
+    name: 'Caipirosca',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodka],
+      [values.one, units.pc, ingredients.cutHalfOfLime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.pipe.normal],
+    required: false,
+  },
+  {
+    name: 'Caipirissima',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.lightRom],
+      [values.one, units.pc, ingredients.cutHalfOfLime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.pipe.normal],
+    required: false,
+  },
+  // TODO: Add Canchanchara, Mojito, Mai Tai, Zombie, Corn & Oil, Pina Colada
+  //  and Pain Killer
+  {
+    name: 'Nautilus',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.tequila],
+      [values.onePiece, units.ml, ingredients.cranberry],
+      [values.half, units.ml, ingredients.lime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+    ],
+    garnishPieces: [garnishes.mint],
+    required: true,
+  },
+  {
+    name: 'Paloma',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.tequila],
+      [values.onePiece, units.ml, ingredients.grapefruit],
+      [values.half, units.ml, ingredients.lime],
+      [values.quarter, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.soda],
+    ],
     required: true,
   },
 ];

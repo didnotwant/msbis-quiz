@@ -45,7 +45,10 @@ const ingredients = {
   maraschino: 'Maraschino',
   wine: 'wino musujące',
   eggWhite: 'białko',
+  mintLeaf: 'liść mięty',
   cider: 'cydr',
+  oliveBrine: 'zalewa z oliwek',
+  limeCordial: 'lime cordial',
 };
 
 const speedRack = [
@@ -90,6 +93,7 @@ const backShelf = [
   ingredients.irishCream,
   ingredients.curacao,
   ingredients.darkRom,
+  ingredients.angosturaAmaro,
 ];
 
 const garnishes = {
@@ -105,6 +109,7 @@ const garnishes = {
     slice: 'plasterek pomarańczy',
     quarter: 'ćwiartka pomarańczy',
     piece: 'kawałek pomarańczy',
+    halfMoon: 'półksiężyc pomarańczy',
   },
   lime: {
     zest: 'zest z limonki',
@@ -114,6 +119,15 @@ const garnishes = {
   crust: {
     salt: 'crusta z soli',
     sugar: 'crusta z cukru',
+  },
+  pipe: {
+    short: 'krótka rurka',
+  },
+  celery: 'seler naciowy',
+  nutmeg: 'gałka muszkatołowa',
+  chocolate: {
+    sprinkle: 'posypka z czekolady',
+    sauce: 'sos czekoladowy',
   },
 };
 const preps = {
@@ -137,8 +151,10 @@ const units = {
   splash: 'splash',
   topUp: 'top up',
   wash: 'wash out/in out',
+  pc: 'sztuk',
 };
 const values = {
+  oneAndHalfPiece: '60',
   onePiece: '40',
   threeQuarters: '30',
   half: '20',
@@ -161,6 +177,7 @@ const recipes = [
       [values.five, units.dash, ingredients.angostura],
     ],
     garnishPieces: [garnishes.cherry, garnishes.orange.zest],
+    required: true,
   },
   {
     name: 'Manhattan',
@@ -170,6 +187,18 @@ const recipes = [
       [values.five, units.dash, ingredients.angostura],
     ],
     garnishPieces: [garnishes.cherry],
+    required: true,
+  },
+  {
+    name: 'Brooklyn',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.bourbon],
+      [values.half, units.ml, ingredients.dry],
+      [values.quarter, units.ml, ingredients.maraschino],
+      [values.three, units.dash, ingredients.angosturaOrange],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: false,
   },
   {
     name: 'Rob Roy',
@@ -179,6 +208,7 @@ const recipes = [
       [values.five, units.dash, ingredients.angostura],
     ],
     garnishPieces: [garnishes.cherry],
+    required: true,
   },
   {
     name: 'El Presidente',
@@ -190,6 +220,7 @@ const recipes = [
       [values.five, units.ml, ingredients.grenadine],
     ],
     garnishPieces: [garnishes.orange.zest],
+    required: true,
   },
   {
     name: 'Sazerac',
@@ -200,15 +231,252 @@ const recipes = [
       [values.five, units.dash, ingredients.peychaud],
     ],
     garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Mint Julep',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.bourbon],
+      [values.five, units.ml, ingredients.simpleSyrup],
+      [values.fifteen, units.pc, ingredients.mintLeaf],
+    ],
+    garnishPieces: [garnishes.mint, garnishes.pipe.short],
+    required: false,
+  },
+  {
+    name: 'Negroni',
+    ingredients: [
+      [values.threeQuarters, units.ml, ingredients.gin],
+      [values.threeQuarters, units.ml, ingredients.campari],
+      [values.threeQuarters, units.ml, ingredients.sweet],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: 'Boulevardier',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.rye],
+      [values.half, units.ml, ingredients.campari],
+      [values.half, units.ml, ingredients.sweet],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: 'Right Hand',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.darkRom],
+      [values.half, units.ml, ingredients.campari],
+      [values.three, units.dash, ingredients.angosturaChocolate],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: 'Paper Plane',
+    ingredients: [
+      [values.half, units.ml, ingredients.rye],
+      [values.half, units.ml, ingredients.campari],
+      [values.half, units.ml, ingredients.angosturaAmaro],
+      [values.half, units.ml, ingredients.lemon],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: 'Americano',
+    ingredients: [
+      [values.threeQuarters, units.ml, ingredients.campari],
+      [values.threeQuarters, units.ml, ingredients.sweet],
+      [values.one, units.splash, ingredients.soda],
+    ],
+    garnishPieces: [garnishes.orange.halfMoon],
+    required: true,
+  },
+  {
+    name: 'Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.five, units.ml, ingredients.dry],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Hanky Panky',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.sweet],
+      [values.one, units.dash, ingredients.fernetBranca],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: '50/50 Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.onePiece, units.ml, ingredients.dry],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Wet Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.quarter, units.ml, ingredients.dry],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Dirty Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.five, units.ml, ingredients.dry],
+      [values.quarter, units.ml, ingredients.oliveBrine],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'In/Out Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.one, units.wash, ingredients.dry],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Vesper Martini',
+    ingredients: [
+      [values.oneAndHalfPiece, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.vodka],
+      [values.quarter, units.ml, ingredients.lillet],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Gibson Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.five, units.ml, ingredients.dry],
+    ],
+    garnishPieces: [garnishes.onion],
+    required: true,
+  },
+  {
+    name: 'Extra Dry Martini',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+    ],
+    garnishPieces: [garnishes.olive],
+    garnishPiecesOr: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Martinez',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.half, units.ml, ingredients.sweet],
+      [values.five, units.ml, ingredients.maraschino],
+      [values.two, units.dash, ingredients.angosturaOrange],
+      [values.two, units.dash, ingredients.angostura],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: false,
+  },
+  {
+    name: 'Cosmopolitan',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.vodkaLime],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.half, units.ml, ingredients.cranberry],
+      [values.quarter, units.ml, ingredients.lime],
+    ],
+    garnishPieces: [garnishes.orange.zest],
+    required: true,
+  },
+  {
+    name: 'Gimlet',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.quarter, units.ml, ingredients.limeCordial],
+    ],
+    garnishPieces: [garnishes.lime.zest],
+    required: false,
+  },
+  {
+    name: 'Whiskey Sour',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.jack],
+      [values.threeQuarters, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.three, units.dash, ingredients.angostura],
+      [values.fifteen, units.ml, ingredients.eggWhite],
+    ],
+    garnishPieces: [garnishes.lemon.zest, garnishes.cherry],
+    required: false,
+  },
+  {
+    name: 'Lynchburg Lemonade',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.jack],
+      [values.half, units.ml, ingredients.tripleSec],
+      [values.threeQuarters, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.lemonade],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Tom Collins',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.gin],
+      [values.threeQuarters, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.soda],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'Joe Collins',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.scotch],
+      [values.threeQuarters, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.soda],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
+  },
+  {
+    name: 'John Collins',
+    ingredients: [
+      [values.onePiece, units.ml, ingredients.bourbon],
+      [values.threeQuarters, units.ml, ingredients.lemon],
+      [values.fifteen, units.ml, ingredients.simpleSyrup],
+      [values.one, units.topUp, ingredients.soda],
+    ],
+    garnishPieces: [garnishes.lemon.zest],
+    required: true,
   },
 ];
 
 let currentRecipe = recipes[0];
 
 const checkRecipe = function (ingredients) {
-  console.log('Current recipe ingredients?', JSON.stringify(currentRecipe.ingredients));
-  console.log('Ingredients to check?', JSON.stringify(ingredients));
-
   if (JSON.stringify(currentRecipe.ingredients) === JSON.stringify(ingredients)) {
     alert('Brawo! Ogarniasz ' + currentRecipe.name + ' :)');
   } else {
@@ -216,11 +484,11 @@ const checkRecipe = function (ingredients) {
       currentRecipe.ingredients.map(el => el.join(' ')).join(', '));
   }
 
-  createAddForm();
+  createAddingForm();
   randomizeCocktail();
 };
 
-const createAddForm = function () {
+const createAddingForm = function () {
   const ingredientsWrapperEl = document.querySelector('.ingredients');
   const addingFormEl = ingredientsWrapperEl.querySelector('.adding-form');
   const addedIngredientsWrapperEl = ingredientsWrapperEl.querySelector('.added-ingredients');
@@ -328,5 +596,5 @@ const randomizeCocktail = function () {
   cocktailNameEl.textContent = currentRecipe.name;
 };
 
-createAddForm();
+createAddingForm();
 randomizeCocktail();

@@ -612,6 +612,10 @@ const recipes = [
   },
 ];
 
+const recipesRequiredOnExam = recipes.filter(function (recipe) {
+  return recipe.required;
+});
+
 let currentRecipe = recipes[0];
 let shouldRandomizeRequiredOnly = true;
 
@@ -742,15 +746,11 @@ const createAddingForm = function () {
 };
 
 const randomizeCocktail = function () {
-  const recipesMaybeFiltered = recipes.filter(function (recipe) {
-    if (shouldRandomizeRequiredOnly) {
-      return recipe.required;
-    }
+  const recipesSet = shouldRandomizeRequiredOnly ?
+    recipesRequiredOnExam :
+    recipes;
 
-    return true;
-  });
-
-  currentRecipe = recipesMaybeFiltered[Math.floor(Math.random() * recipesMaybeFiltered.length)];
+  currentRecipe = recipesSet[Math.floor(Math.random() * recipesSet.length)];
 
   const cocktailNameEl = document.querySelector('.cocktail-name');
   cocktailNameEl.textContent = currentRecipe.name;

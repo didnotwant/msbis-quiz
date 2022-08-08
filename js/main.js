@@ -958,7 +958,7 @@ const recipeModifiers = [
     );
 
     if (anyCreamCoctail) {
-      recipe.ingredients.splice(1, 0, [
+      recipe.ingredients.splice(2, 0, [
         values.half, units.ml, ingredients.vodka
       ]);
 
@@ -975,7 +975,7 @@ const recipeModifiers = [
     );
 
     if (anyCreamCoctail) {
-      recipe.ingredients.splice(1, 0, [
+      recipe.ingredients.splice(2, 0, [
         values.half, units.ml, ingredients.southernComfort
       ]);
 
@@ -992,7 +992,7 @@ const recipeModifiers = [
     );
 
     if (anyCreamCoctail) {
-      recipe.ingredients.splice(1, 0, [
+      recipe.ingredients.splice(2, 0, [
         values.half, units.ml, ingredients.chambord
       ]);
 

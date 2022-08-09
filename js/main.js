@@ -325,7 +325,9 @@ const recipes = [
       [values.one, units.dash, ingredients.fernetBranca],
     ],
     garnishPieces: [garnishes.orange.zest],
-    required: true,
+
+    // We don't have Fernet Branca in the school, so it's not required.
+    required: false,
   },
   {
     name: '50/50 Martini',

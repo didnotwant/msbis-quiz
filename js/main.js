@@ -564,16 +564,6 @@ const recipes = [
     required: true,
   },
   {
-    name: 'Blue Margarita',
-    ingredients: [
-      [values.onePiece, units.ml, ingredients.tequila],
-      [values.half, units.ml, ingredients.curacao],
-      [values.half, units.ml, ingredients.lime],
-    ],
-    garnishPieces: [garnishes.lime.zest],
-    required: true,
-  },
-  {
     name: 'Daiquiri',
     ingredients: [
       [values.onePiece, units.ml, ingredients.lightRom],

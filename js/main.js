@@ -1001,6 +1001,20 @@ const recipeModifiers = [
       return null;
     }
   }],
+  ['Blue', function (recipe) {
+    const anyTripleSec = recipe.ingredients.find(
+      ingredient => ingredient[1] === units.ml &&
+        ingredient[2] === ingredients.tripleSec
+    );
+
+    if (anyTripleSec) {
+      anyTripleSec[2] = ingredients.curacao;
+
+      return recipe;
+    } else {
+      return null;
+    }
+  }],
 ];
 
 const additionalRecipes = [];

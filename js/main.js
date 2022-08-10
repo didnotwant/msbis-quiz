@@ -1,3 +1,18 @@
+const utils = {
+  randomize: function (array) {
+    return array[Math.floor(Math.random() * array.length)];
+  },
+  findDuplicates: function (array) {
+    return Array.from(new Set(
+      array.filter((item, index) => array.indexOf(item) !== index)
+    ));
+  },
+  findCommonForAll: function (array) {
+    // TODO: Create a function which returns common ingredients of ALL the
+    //  cocktails.
+  },
+};
+
 const ingredients = {
   vodka: 'wódka',
   gin: 'gin',
@@ -1029,12 +1044,143 @@ additionalRecipes.forEach(function (additionalRecipe) {
   recipes.push(additionalRecipe);
 });
 
+console.log('RECIPES?', recipes);
+
 const recipesRequiredOnExam = recipes.filter(function (recipe) {
   return recipe.required;
 });
 
 let currentRecipe = recipes[0];
 let shouldRandomizeRequiredOnly = true;
+
+// Beta.
+const showAllNeededIngredients = function (recipesNames, source) {
+  const list = new Set();
+
+  if (!source) {
+    source = recipes;
+  }
+
+  if (!Array.isArray(recipesNames)) {
+    recipesNames = source.map(function (recipe) {
+      return recipe.name;
+    });
+  }
+
+  source
+    .filter(function (recipe) {
+      return recipesNames.some(function (name) {
+        return name === recipe.name;
+      });
+    })
+    .map(function (recipe) {
+      return recipe.ingredients.map(function (ingredient) {
+        return ingredient[2];
+      });
+    })
+    .forEach(function (ingredientsByCocktailName) {
+      ingredientsByCocktailName.forEach(function (ingredientName) {
+        list.add(ingredientName);
+      });
+    });
+
+  return Array.from(list);
+};
+
+// Beta.
+const showIngredientsOccurMoreThanOnce = function (recipesNames, source) {
+  const list = [];
+
+  if (!source) {
+    source = recipes;
+  }
+
+  if (!Array.isArray(recipesNames)) {
+    recipesNames = source.map(function (recipe) {
+      return recipe.name;
+    });
+  }
+
+  source
+    .filter(function (recipe) {
+      return recipesNames.some(function (name) {
+        return name === recipe.name;
+      });
+    })
+    .map(function (recipe) {
+      return recipe.ingredients.map(function (ingredient) {
+        return ingredient[2];
+      });
+    })
+    .forEach(function (ingredientsByCocktailName) {
+      ingredientsByCocktailName.forEach(function (ingredientName) {
+        list.push(ingredientName);
+      });
+    });
+
+  return utils.findDuplicates(list);
+};
+
+// Beta.
+const randomExamSet = function (count) {
+  if (!count) {
+    count = 4;
+  }
+
+  const list = new Set();
+
+  const haveIngredientsInCommon = function () {};
+  const areInCocktailGlass = function () {};
+
+  const recipesMetConditions = recipesRequiredOnExam.filter(function (recipe) {
+    // TODO: Implement conditions.
+    return true;
+  });
+
+  // console.log('RECIPES MET CONDITION', recipesMetConditions);
+
+  while(list.size < count) {
+    list.add(utils.randomize(recipesMetConditions));
+  }
+
+  // TODO: if more than one are in cocktail glass then make every but any one of
+  //  them "on the rocks". e.g. Array.from(list) find all with them, then
+  //  randomize one which should be in cocktail anyway, then make the others
+  //  "on the rocks".
+
+  return Array.from(list);
+};
+
+// Alpha.
+const runExam = function () {
+  const examRandomListEl = document.querySelector('.exam-random');
+
+  const examSet = randomExamSet().map(recipe => recipe.name);
+
+  examRandomListEl.innerHTML = '';
+
+  examSet.forEach(function (randomizedCocktailName) {
+    const listItemEl = document.createElement('li');
+
+    listItemEl.textContent = randomizedCocktailName;
+
+    examRandomListEl.appendChild(listItemEl);
+  });
+
+  // console.log('Wylosowano: ', examSet);
+  // console.log('Wszystkie potrzebne składniki: ', showAllNeededIngredients(examSet, recipesRequiredOnExam));
+  // console.log('Składniki występujące więcej niż raz: ', showIngredientsOccurMoreThanOnce(examSet, recipesRequiredOnExam));
+};
+
+const initExamRandomization = function () {
+  runExam();
+
+  const randomBtnEl = document.querySelector('.random-exam-btn');
+
+  randomBtnEl.addEventListener('click', function () {
+    runExam();
+  });
+};
 
 const checkRecipe = function (ingredients) {
   if (JSON.stringify(currentRecipe.ingredients) === JSON.stringify(ingredients)) {
@@ -1167,7 +1313,7 @@ const randomizeCocktail = function () {
     recipesRequiredOnExam :
     recipes;
 
-  currentRecipe = recipesSet[Math.floor(Math.random() * recipesSet.length)];
+  currentRecipe = utils.randomize(recipesSet);
 
   const cocktailNameEl = document.querySelector('.cocktail-name');
   cocktailNameEl.textContent = currentRecipe.name;
@@ -1176,3 +1322,4 @@ const randomizeCocktail = function () {
 initSettingsSection();
 createAddingForm();
 randomizeCocktail();
+initExamRandomization();

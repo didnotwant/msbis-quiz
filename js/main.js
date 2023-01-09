@@ -7,7 +7,7 @@ const utils = {
       array.filter((item, index) => array.indexOf(item) !== index)
     ));
   },
-  findCommonForAll: function (array) {
+  findCommonIngredientsForAll: function (array) {
     // TODO: Create a function which returns common ingredients of ALL the
     //  cocktails.
   },
